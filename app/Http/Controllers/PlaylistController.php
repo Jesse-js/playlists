@@ -4,72 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             return datatables()->of(Playlist::select('*'))
-                ->addColumn('action', 'playlists.action')
+                ->addColumn('action', 'playlists.actions')
                 ->rawColumns(['action'])
                 ->make(true);
         }
         return view('playlists.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function upsert(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $playlist = Playlist::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'author' => $request->author
-        ]);
+        $playlist = Playlist::updateOrCreate(
+            ['id' => $request->id],
+            [
+                'title' => $request->title,
+                'description' => $request->description,
+                'author' => $request->author
+            ]
+        );
 
         return response()->json($playlist);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(int $id)
     {
-        //
+        $playlist = Playlist::findOrFail($id);
+        return response()->json($playlist);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

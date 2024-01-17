@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::resource('playlists', PlaylistController::class);
+Route::get('playlists', [PlaylistController::class, 'index'])->name('playlists.index');
+Route::get('playlists/{id}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
+Route::post('playlists/upsert', [PlaylistController::class, 'upsert'])->name('playlists.upsert');
