@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('playlists', [PlaylistController::class, 'index'])->name('playlists.index');
 Route::get('playlists/{id}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
 Route::post('playlists/upsert', [PlaylistController::class, 'upsert'])->name('playlists.upsert');
+Route::delete('playlists/{id}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');

@@ -76,3 +76,25 @@ $("#playlistForm").submit(function (e) {
         },
     });
 });
+
+function deleteConfirm(id) {
+    $("#playlistForm").trigger("reset");
+    $("#id").val(id);
+    $("#deleteModal").modal("show");
+}
+
+$("#deleteForm").submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "DELETE",
+        url: `/playlists/${$("#id").val()}`,
+        data: {
+            id: $("#id").val(),
+        },
+        dataType: "json",
+        success: function (data) {
+            $("#deleteModal").modal("hide");
+            $("#playlistTable").DataTable().ajax.reload();
+        }
+    }) 
+});

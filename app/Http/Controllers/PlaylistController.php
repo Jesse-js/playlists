@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
-use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller
 {
@@ -40,8 +39,9 @@ class PlaylistController extends Controller
         return response()->json($playlist);
     }
 
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $playlist = Playlist::destroy($id);
+        return response()->json($playlist);
     }
 }
