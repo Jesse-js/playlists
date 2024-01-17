@@ -12,6 +12,12 @@ class PlaylistController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()) {
+            return datatables()->of(Playlist::select('*'))
+                ->addColumn('action', 'playlists.action')
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('playlists.index');
     }
 

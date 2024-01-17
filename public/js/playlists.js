@@ -1,3 +1,24 @@
+
+$(document).ready(function () {
+    $('#playlistTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '/playlists',
+        },
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'title', name: 'title'},
+            {data: 'description', name: 'description'},
+            {data: 'author', name: 'author'},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'updated_at', name: 'updated_at'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ],
+        order: [[0, 'asc']],
+    });
+})
+
 function add() {
     $('#playlistModal').modal('show');
 }

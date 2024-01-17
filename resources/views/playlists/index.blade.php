@@ -5,7 +5,7 @@
 @section('content')
     <x-header title="Playlists" />
     <div class="card-body">
-        <table class="table table-bordered" id="playlistTable">
+        <table class="table table-striped table-bordered table-responsive-sm" id="playlistTable">
             <thead>
                 <th>Id</th>
                 <th>Title</th>
