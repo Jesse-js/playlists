@@ -22,6 +22,7 @@
     <div class="container mt-2">
         @yield('content')
     </div>
+    @stack('scripts')
 </body>
 
 </html>

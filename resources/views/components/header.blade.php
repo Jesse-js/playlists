@@ -5,7 +5,7 @@
                 <h5>{{ $title }}</h2>
             </div>
             <div class="pull-right mb-2">
-                <a href="javascript:void(0)" onclick="add()" class="btn btn-success">Create {{ $title }}</a>
+                <a href="javascript:void(0)" onclick="add()" class="btn btn-secondary ">Create {{ $title }}</a>
             </div>
         </div>
     </div>
