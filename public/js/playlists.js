@@ -15,7 +15,7 @@ $(document).ready(function () {
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
     });
 })
 
@@ -36,7 +36,7 @@ $('#playlistForm').submit(function (e) {
             processData: false,
             success: function (data) {
                 $('#playlistModal').modal('hide');
-                //$('#playlistTable').DataTable().ajax.reload();
+                $('#playlistTable').DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);
