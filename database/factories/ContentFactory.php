@@ -22,7 +22,7 @@ class ContentFactory extends Factory
             'playlist_id' => $this->faker->randomElement($playlistIds),
             'title' => $this->faker->text(5),
             'author' => $this->faker->text(5),
-            'url' => $this->faker->url(10),
+            'url' => $this->faker->url('https'),
         ];
     }
 }
