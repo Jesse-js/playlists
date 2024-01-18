@@ -55,7 +55,7 @@
                             <label for="url" class="col-sm-2 control-label">Url</label>
                             <div class="col-sm-12">
                                 <input type="url" class="form-control" name="url" id="url" minlength="10"
-                                    maxlength="255" placeholder="https://example.com" pattern="https://.*" required>
+                                    maxlength="255" placeholder="https://example.com" pattern="http://.*|https://.*" required>
                             </div>
                         </div>
                         <div class="col-sm-offset-2 col-sm-10 mt-2">
