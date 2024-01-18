@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-
+{{-- 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -69,7 +69,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete?</p>
+                    <p>Are you sure you want to delete the "<span id="playlistTitle"></span>" playlist?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -81,7 +81,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <x-delete-confirm context="playlist" />
 
     @push('scripts')
         <script src="{{ asset('js/playlists.js') }}"></script>

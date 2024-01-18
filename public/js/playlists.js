@@ -77,9 +77,11 @@ $("#playlistForm").submit(function (e) {
     });
 });
 
-function deleteConfirm(id) {
+function deleteConfirm(id, title) {
     $("#playlistForm").trigger("reset");
     $("#id").val(id);
+    $("#playlistModalTitle").text("Delete Playlist");
+    $("#playlistTitle").html(title);
     $("#deleteModal").modal("show");
 }
 
