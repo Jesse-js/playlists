@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <x-delete-confirm context="content" />
     @push('scripts')
         <script src="{{ asset('js/contents.js') }}"></script>
     @endpush

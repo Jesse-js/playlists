@@ -44,12 +44,15 @@ class ContentController extends Controller
 
     public function edit(int $id)
     {
-        //
+        $content = Content::findOrFail($id);
+        return response()->json($content);
     }
 
     public function destroy(int $id)
     {
-        //
+        $content = Content::findOrFail($id);
+        $content->delete();
+        return response()->json($content);
     }
 
     public function playlist(int $id = null)

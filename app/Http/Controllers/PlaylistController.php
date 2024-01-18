@@ -41,7 +41,8 @@ class PlaylistController extends Controller
 
     public function destroy(int $id)
     {
-        $playlist = Playlist::destroy($id);
+        $playlist = Playlist::findOrFail($id);
+        $playlist->delete();
         return response()->json($playlist);
     }
 }

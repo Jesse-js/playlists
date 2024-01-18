@@ -37,79 +37,53 @@ function add() {
     $("#contentModal").modal("show");
 }
 
-function getPlaylists(id) {
-    if (!id) {
-        $.ajax({
-            type: "GET",
-            url: "contents/playlist",
-            success: function (data) {
-                loadOptions(data);
-            },
-            error: function (data) {
-                console.log(data);
-            },
-        });
-    }
+function edit(id) {
+    $.ajax({
+        type: "GET",
+        url: `/contents/${id}/edit`,
+        data: {
+            id: id,
+        },
+        dataType: "json",
+        success: function (data) {
+            $("#contentModalTitle").text("Edit Content");
+            $("#contentModal").modal("show");
+            $("#id").val(data.id);
+            getPlaylists(data.playlist_id);
+            $("#title").val(data.title);
+            $("#url").val(data.url);
+            $("#author").val(data.author);
+        },
+        error: function (data) {
+            console.log(data);
+        },
+    });
 }
 
-function loadOptions(data) {
+function getPlaylists(playlistId = null) {
+    $.ajax({
+        type: "GET",
+        url: "contents/playlist",
+        success: function (data) {
+            loadOptions(data, playlistId);
+        },
+        error: function (data) {
+            console.log(data);
+        },
+    });
+}
+
+function loadOptions(data, playlistId = null) {
     var playlistSelect = $("#playlistId");
     for (var playlist of data) {
         var playlistOption = $('<option class="dropdown-item">');
         playlistOption.val(playlist.id);
         playlistOption.text(playlist.title);
-        playlistOption.prop("selected", playlist.selected);
+        if (playlistId == playlist.id) playlistOption.prop("selected", true);
 
         playlistSelect.append(playlistOption);
     }
 }
-
-// $("#contentModal").on("show.bs.modal", function () {
-//     var playlistSelect = $("#playlistId");
-
-//     var playlists = [
-//         { value: "1", text: "Opção 1", selected: true },
-//         { value: "2", text: "Opção 2" },
-//         { value: "3", text: "Opção 3" },
-//     ];
-
-//     for (var playlist of playlists) {
-//         var playlistOption = $("<option>");
-
-//         playlistOption.val(playlist.value);
-//         playlistOption.text(playlist.text);
-//         playlistOption.prop("selected", playlist.selected);
-
-//         playlistSelect.append(playlistOption);
-//     }
-// });
-
-// function carregarOpcoes() {
-//     var selectElement = $("#seuSelect");
-
-//     $.ajax({
-//       url: "/teste",
-//       method: "GET",
-//       dataType: "json",
-//       success: function(response) {
-//         // Loop através do JSON recebido
-//         for (var option of response) {
-//           // Crie um objeto de opção
-//           var optionElement = $("<option>");
-
-//           // Defina o valor e o texto da opção
-//           optionElement.val(option.value);
-//           optionElement.text(option.text);
-
-//           // Adicione a opção ao elemento select
-//           selectElement.append(optionElement);
-//         }
-//       },
-//       error: function(xhr, status, error) {
-//         console.log("Erro ao carregar opções:", error);
-//       }
-//     });
-//   }
 
 $("#contentForm").submit(function (e) {
     e.preventDefault();
@@ -129,4 +103,29 @@ $("#contentForm").submit(function (e) {
             console.log(data);
         },
     });
+});
+
+
+function deleteConfirm(id, title) {
+  $("#contentForm").trigger("reset");
+  $("#id").val(id);
+  $("#contentModalTitle").text("Delete Content");
+  $("#contentTitle").html(title);
+  $("#deleteModal").modal("show");
+}
+
+$("#deleteForm").submit(function (e) {
+  e.preventDefault();
+  $.ajax({
+      type: "DELETE",
+      url: `/contents/${$("#id").val()}`,
+      data: {
+          id: $("#id").val(),
+      },
+      dataType: "json",
+      success: function (data) {
+          $("#deleteModal").modal("hide");
+          $("#contentTable").DataTable().ajax.reload();
+      }
+  }) 
 });
