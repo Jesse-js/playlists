@@ -5,11 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\Playlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ContentController extends Controller
 {
     public function index()
     {
+        if (request()->ajax()) {
+            try {
+                return datatables()->of(Content::addSelect([
+                    'playlist' => Playlist::select('title')
+                        ->whereColumn('playlists.id', 'contents.playlist_id')
+                ]))
+                    ->addColumn('action', 'components.actions')
+                    ->rawColumns(['action'])
+                    ->make(true);
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+            }
+        }
         return view('contents.index');
     }
 

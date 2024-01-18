@@ -12,7 +12,7 @@ class PlaylistController extends Controller
     {
         if (request()->ajax()) {
             return datatables()->of(Playlist::select('*'))
-                ->addColumn('action', 'playlists.actions')
+                ->addColumn('action', 'components.actions')
                 ->rawColumns(['action'])
                 ->make(true);
         }

@@ -1,3 +1,34 @@
+$(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $("#_token").val(),
+        },
+    });
+    $("#contentTable").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "/contents",
+        },
+        columns: [
+            { data: "id", name: "id" },
+            { data: "playlist", name: "playlist" },
+            { data: "title", name: "title" },
+            { data: "url", name: "url" },
+            { data: "author", name: "author" },
+            { data: "created_at", name: "created_at" },
+            { data: "updated_at", name: "updated_at" },
+            {
+                data: "action",
+                name: "action",
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        order: [[0, "desc"]],
+    });
+});
+
 function add() {
     $("#contentForm").trigger("reset");
     $("#contentModalTitle").text("Add Content");
