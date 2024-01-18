@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('img/logo.png') }}" alt="" width="200" height="">
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -19,7 +19,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Contents</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contents.index') }}">Contents</a></li>
                     </ul>
                 </li>
             </ul>
