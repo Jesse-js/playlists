@@ -12,7 +12,7 @@ $(document).ready(function () {
         },
         columns: [
             { data: "id", name: "id" },
-            { data: "playlist", name: "playlist" },
+            { data: "playlist", name: "playlist", searchable: false },
             { data: "title", name: "title" },
             { data: "url", name: "url" },
             { data: "author", name: "author" },
