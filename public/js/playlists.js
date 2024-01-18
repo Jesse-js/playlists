@@ -82,8 +82,45 @@ function deleteConfirm(id, title) {
     $("#id").val(id);
     $("#playlistModalTitle").text("Delete Playlist");
     $("#playlistTitle").html(title);
+    $('#playlistContentDeleteList').empty();
+    getContents(id);
     $("#deleteModal").modal("show");
 }
+
+function getContents(playlistId = null) {
+    $.ajax({
+        type: "GET",
+        url: `playlists/contents/${playlistId}`,
+        success: function (data) {
+            loadItens(data);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    })
+}
+
+function loadItens(data) {
+    var contentList = $("#playlistContentDeleteList");
+    if(!data.length) {
+        $('#playlistContentDeleteMessage').text('*This playlist does not contain associated contents');
+        $('#playlistContentDeleteMessage').removeClass('text-danger');
+        $('#playlistContentDeleteMessage').addClass('text-info');
+        $('#playlistContentDeleteList').hide();
+    } else {
+        $('#playlistContentDeleteMessage').html('*This action will delete the following content linked to the playlist:');
+        $('#playlistContentDeleteMessage').removeClass('text-info');
+        $('#playlistContentDeleteMessage').addClass('text-danger');
+        $('#playlistContentDeleteList').show();
+        for (var content of data) {
+            var contentItem = $('<li class="list-group-item">');
+            contentItem.text(content.title);
+            contentList.append(contentItem);
+        }
+    }
+}
+
+
 
 $("#deleteForm").submit(function (e) {
     e.preventDefault();

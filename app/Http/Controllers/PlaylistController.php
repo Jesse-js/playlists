@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller
 {
@@ -44,5 +45,21 @@ class PlaylistController extends Controller
         $playlist = Playlist::findOrFail($id);
         $playlist->delete();
         return response()->json($playlist);
+    }
+
+    public function contents(int $id)
+    {
+        try {
+            if (isset($id)) {
+                $playlist = Playlist::findOrFail($id);
+                if ($playlist->contents()->exists()) {
+                    $contents = $playlist->contents;
+                    return response()->json($contents);
+                }
+                return response()->json([]);
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 }

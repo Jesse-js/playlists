@@ -22,6 +22,7 @@ Route::get('playlists', [PlaylistController::class, 'index'])->name('playlists.i
 Route::get('playlists/{id}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
 Route::post('playlists/upsert', [PlaylistController::class, 'upsert'])->name('playlists.upsert');
 Route::delete('playlists/{id}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
+Route::get('playlists/contents/{id}', [PlaylistController::class, 'contents'])->name('playlists.contents');
 
 
 Route::get('contents', [ContentController::class, 'index'])->name('contents.index');

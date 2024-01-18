@@ -8,6 +8,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete the "<span id="{{ $context }}Title"></span>" {{ $context }}?</p>
+                {{ $slot }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

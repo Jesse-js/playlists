@@ -61,7 +61,13 @@
             </div>
         </div>
     </div>
-    <x-delete-confirm context="playlist" />
+    <x-delete-confirm context="playlist">
+        <p id="playlistContentDeleteMessage"></p>
+        <ul id="playlistContentDeleteList" class="list-group">
+
+        </ul>
+    </x-delete-confirm>
+
 
     @push('scripts')
         <script src="{{ asset('js/playlists.js') }}"></script>
