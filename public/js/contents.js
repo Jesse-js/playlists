@@ -61,6 +61,7 @@ function edit(id) {
 }
 
 function getPlaylists(playlistId = null) {
+    $("#playlistId").empty();
     $.ajax({
         type: "GET",
         url: "contents/playlist",

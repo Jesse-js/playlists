@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Playlist</label>
                             <div class="col-sm-12">
-                                <select name="playlistId" id="playlistId" class="form-control">
+                                <select name="playlistId" id="playlistId" class="form-control" required>
                                 </select>
                             </div>
                         </div>
@@ -54,7 +54,8 @@
                         <div class="form-group">
                             <label for="url" class="col-sm-2 control-label">Url</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="url" id="url" cols="30" rows="5" maxlength="255" required></textarea>
+                                <input type="url" class="form-control" name="url" id="url" minlength="10"
+                                    maxlength="255" placeholder="https://example.com" pattern="https://.*" required>
                             </div>
                         </div>
                         <div class="col-sm-offset-2 col-sm-10 mt-2">

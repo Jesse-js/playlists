@@ -2,49 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UpsertPlaylistRequest;
 use App\Models\Playlist;
 use Illuminate\Support\Facades\Log;
+use Exception;
 
 class PlaylistController extends Controller
 {
 
     public function index()
     {
-        if (request()->ajax()) {
-            return datatables()->of(Playlist::select('*'))
-                ->addColumn('action', 'components.actions')
-                ->rawColumns(['action'])
-                ->make(true);
+        try {
+            if (request()->ajax()) {
+                return datatables()->of(Playlist::select('*'))
+                    ->addColumn('action', 'components.actions')
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
         }
         return view('playlists.index');
     }
 
-    public function upsert(Request $request)
+    public function upsert(UpsertPlaylistRequest $request)
     {
-        $playlist = Playlist::updateOrCreate(
-            ['id' => $request->id],
-            [
-                'title' => $request->title,
-                'description' => $request->description,
-                'author' => $request->author
-            ]
-        );
+        try {
+            $playlist = Playlist::updateOrCreate(
+                ['id' => $request->id],
+                [
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'author' => $request->author
+                ]
+            );
 
-        return response()->json($playlist);
+            return response()->json($playlist);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Internal server error, please try again later!",
+            ], 500);
+        }
     }
 
     public function edit(int $id)
     {
-        $playlist = Playlist::findOrFail($id);
-        return response()->json($playlist);
+        try {
+            $playlist = Playlist::findOrFail($id);
+            return response()->json($playlist);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Internal server error, please try again later!",
+            ], 500);
+        }
     }
 
     public function destroy(int $id)
     {
-        $playlist = Playlist::findOrFail($id);
-        $playlist->delete();
-        return response()->json($playlist);
+        try {
+            $playlist = Playlist::findOrFail($id);
+            $playlist->delete();
+            return response()->json($playlist);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Internal server error, please try again later!",
+            ], 500);
+        }
     }
 
     public function contents(int $id)
@@ -58,8 +87,12 @@ class PlaylistController extends Controller
                 }
                 return response()->json([]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Internal server error, please try again later!",
+            ], 500);
         }
     }
 }
