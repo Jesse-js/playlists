@@ -4,7 +4,7 @@ Welcome to the SectoTeca project, developed by me ©Jessé Jorge Santana.
 
 I hope you enjoy the experience! :smile:
 
-*If you want to watch the video presentation of my project, please click <a href="">here</a>.*
+*If you want to watch the video presentation of my project, please click <a href="https://youtu.be/EYdl_-iHen8">here</a>.*
 
 I made this simple documentation to help you install and run this project: :computer::gear:
 
