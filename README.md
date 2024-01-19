@@ -6,7 +6,7 @@ I hope you enjoy the experience! :smile:
 
 *If you want to watch the video presentation of my project, please click <a href="https://youtu.be/EYdl_-iHen8">here</a>.*
 
-I made this simple documentation to help you install and run this project: :computer::gear:
+I made this simple documentation to help you install and run this project: :computer: :gear:
 
 If you need help or have any questions, please don't hesitate to get in touch with me. Here are some ways to get in touch with me:
 
@@ -72,7 +72,7 @@ DB_PASSWORD=password
 ```
 If you use Sail, please keep the username `sail` and the password as `password`. In the case of Sail, ensure that no other applications are using port `3306` for the MySQL database.
 
-If you are using Linux and are using Docker Desktop you must run the following command:
+If you are using Linux and are using Docker Desktop you must run the following command. If you are not using Docker Desktop for Linux, you may skip this step.
 ```
 docker context use default
 ```
