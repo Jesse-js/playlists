@@ -35,6 +35,7 @@ function add() {
     $("#playlistId").prop("selectedIndex", 0);
     getPlaylists();
     $("#contentModal").modal("show");
+    $("#id").val("");
 }
 
 function edit(id) {
