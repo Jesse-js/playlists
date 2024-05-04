@@ -1,6 +1,6 @@
 @extends('layouts.app-layout')
 
-@section('title', 'SectoTeca - Contents')
+@section('title', 'Playlists - Contents')
 
 @section('content')
     <x-header title="Contents" />
