@@ -1,6 +1,6 @@
-## SectoTeca Project
+## Playlist Project
 
-Welcome to the SectoTeca project, developed by me ©Jessé Jorge Santana.
+Welcome to the Playlist project, developed by me ©Jessé Jorge Santana.
 
 I hope you enjoy the experience! :smile:
 
@@ -34,7 +34,7 @@ Configure the following variables in your `.env` file for database configuration
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=sectoteca
+DB_DATABASE=Playlist
 DB_USERNAME=root
 DB_PASSWORD=root
 ```
@@ -66,7 +66,7 @@ Configure the following variables in your `.env` file for database configuration
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=sectoteca
+DB_DATABASE=Playlist
 DB_USERNAME=sail
 DB_PASSWORD=password
 ```
@@ -115,4 +115,4 @@ If you followed one of the steps listed above, the expected result will be to se
 
 ![Alt text](image.png)
 
-You can use the "SectoTeca" menu to register playlists and content.
+You can use the "Playlist" menu to register playlists and content.
